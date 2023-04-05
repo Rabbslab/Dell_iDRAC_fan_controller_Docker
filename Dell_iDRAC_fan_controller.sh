@@ -197,22 +197,22 @@ while true; do
     fi
   fi
   #retrieve_temperatures $IS_EXHAUST_TEMPERATURE_SENSOR_PRESENT $IS_CPU2_TEMPERATURE_SENSOR_PRESENT
-  if [$CPU1_TEMPERATURE -le 45]; then
+  if [[$CPU1_TEMPERATURE -le 45]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
     COMMENT="Test (15%)"
-  elif [$CPU1_TEMPERATURE -gt 45 -a $CPU1_TEMPERATURE -le 50]; then
+  elif [[$CPU1_TEMPERATURE -gt 45]] && [[$CPU1_TEMPERATURE -le 50]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x16 >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (22%)"
     COMMENT="Test (22%)"
-  elif [$CPU1_TEMPERATURE -gt 50 -a $CPU1_TEMPERATURE -le 55]; then
+  elif [[$CPU1_TEMPERATURE -gt 50]] && [[$CPU1_TEMPERATURE -le 55]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x20 >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (32%)"
     COMMENT="Test (32%)"
-  elif [$CPU1_TEMPERATURE -gt 55 -a $CPU1_TEMPERATURE -le 60]; then
+  elif [[$CPU1_TEMPERATURE -gt 55]] && [[$CPU1_TEMPERATURE -le 60]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x2E >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (46%)"
