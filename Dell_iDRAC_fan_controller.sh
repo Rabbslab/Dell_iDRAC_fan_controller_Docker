@@ -201,22 +201,22 @@ while true; do
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
-    COMMENT="Test (15%)"
+    echo "Test (15%)"
   elif [[ $CPU1_TEMPERATURE -gt 45 ]] && [[ $CPU1_TEMPERATURE -le 50 ]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x16 >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (22%)"
-    COMMENT="Test (22%)"
+    echo "Test (22%)"
   elif [[ $CPU1_TEMPERATURE -gt 50 ]] && [[ $CPU1_TEMPERATURE -le 55 ]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x20 >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (32%)"
-    COMMENT="Test (32%)"
+    echo "Test (32%)"
   elif [[ $CPU1_TEMPERATURE -gt 55 ]] && [[ $CPU1_TEMPERATURE -le 60 ]]; then
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x2E >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (46%)"
-    COMMENT="Test (46%)"
+    echo "Test (46%)"
   else
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x44 >/dev/null
