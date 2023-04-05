@@ -190,40 +190,42 @@ while true; do
     fi
   else
     apply_user_fan_control_profile
+        
+  if [[ $CPU1_TEMPERATURE -le 45 ]]; then
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
+    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
+    echo "Preset 1 (15%)"
+  elif [[ $CPU1_TEMPERATURE -gt 45 ]] && [[ $CPU1_TEMPERATURE -le 50 ]]; then
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x16 >/dev/null
+    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (22%)"
+    echo "Preset 2 (22%)"
+  elif [[ $CPU1_TEMPERATURE -gt 50 ]] && [[ $CPU1_TEMPERATURE -le 55 ]]; then
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x20 >/dev/null
+    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (32%)"
+    echo "Preset 3 (32%)"
+  elif [[ $CPU1_TEMPERATURE -gt 55 ]] && [[ $CPU1_TEMPERATURE -le 60 ]]; then
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x2E >/dev/null
+    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (46%)"
+    echo "Preset 4 (46%)"
+  else
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x44 >/dev/null
+    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (68%)"
+    #COMMENT="Test (68%)"
+    echo "Preset 5 (68%)"
+  fi
+    
     # Check if user fan control profile is applied then apply it if not
     if $IS_DELL_FAN_CONTROL_PROFILE_APPLIED; then
       IS_DELL_FAN_CONTROL_PROFILE_APPLIED=false
       COMMENT="CPU temperature decreased and is now OK (<= $CPU_TEMPERATURE_THRESHOLD°C), user's fan control profile applied."
     fi
   fi
-  #retrieve_temperatures $IS_EXHAUST_TEMPERATURE_SENSOR_PRESENT $IS_CPU2_TEMPERATURE_SENSOR_PRESENT
-  if [[ $CPU1_TEMPERATURE -le 45 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
-    echo "Test (15%)"
-  elif [[ $CPU1_TEMPERATURE -gt 45 ]] && [[ $CPU1_TEMPERATURE -le 50 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x16 >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (22%)"
-    echo "Test (22%)"
-  elif [[ $CPU1_TEMPERATURE -gt 50 ]] && [[ $CPU1_TEMPERATURE -le 55 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x20 >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (32%)"
-    echo "Test (32%)"
-  elif [[ $CPU1_TEMPERATURE -gt 55 ]] && [[ $CPU1_TEMPERATURE -le 60 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x2E >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (46%)"
-    echo "Test (46%)"
-  else
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x44 >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (68%)"
-    #COMMENT="Test (68%)"
-    echo "Test " $INLET_TEMPERATURE $CPU1_TEMPERATURE
-  fi
+
   # Enable or disable, depending on the user's choice, third-party PCIe card Dell default cooling response
   # No comment will be displayed on the change of this parameter since it is not related to the temperature of any device (CPU, GPU, etc...) but only to the settings made by the user when launching this Docker container
   if $DISABLE_THIRD_PARTY_PCIE_CARD_DELL_DEFAULT_COOLING_RESPONSE; then
