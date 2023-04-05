@@ -189,35 +189,35 @@ while true; do
       COMMENT="CPU 2 temperature is too high, Dell default dynamic fan control profile applied for safety"
     fi
   else
-    apply_user_fan_control_profile
+    #apply_user_fan_control_profile
         
- # if [[ $CPU1_TEMPERATURE -le 45 ]]; then
-  if [[ $CPU1_TEMPERATURE -gt 30 ]] && [[ $CPU1_TEMPERATURE -le 50 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
-    echo "Preset 1 (15%)"
+  if [[ $CPU1_TEMPERATURE -le 45 ]]; then
+  #if [[ $CPU1_TEMPERATURE -gt 30 ]] && [[ $CPU1_TEMPERATURE -le 50 ]]; then
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
+    CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
+    #echo "Preset 1 (15%)"
   elif [[ $CPU1_TEMPERATURE -gt 45 ]] && [[ $CPU1_TEMPERATURE -le 50 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x16 >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (22%)"
-    echo "Preset 2 (22%)"
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x16 >/dev/null
+    CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (22%)"
+    #echo "Preset 2 (22%)"
   elif [[ $CPU1_TEMPERATURE -gt 50 ]] && [[ $CPU1_TEMPERATURE -le 55 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x20 >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (32%)"
-    echo "Preset 3 (32%)"
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x20 >/dev/null
+    CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (32%)"
+    #echo "Preset 3 (32%)"
   elif [[ $CPU1_TEMPERATURE -gt 55 ]] && [[ $CPU1_TEMPERATURE -le 60 ]]; then
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x2E >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (46%)"
-    echo "Preset 4 (46%)"
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x2E >/dev/null
+    CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (46%)"
+    #echo "Preset 4 (46%)"
   else
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
-    #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x44 >/dev/null
-    #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (68%)"
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
+    ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x44 >/dev/null
+    CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (68%)"
     #COMMENT="Test (68%)"
-    echo "Preset 5 (68%)"
+    #echo "Preset 5 (68%)"
   fi
     
     # Check if user fan control profile is applied then apply it if not
