@@ -204,7 +204,7 @@ while true; do
     fi
   else
     apply_user_fan_control_profile
-    retrieve_temperatures
+    retrieve_temperatures $IS_EXHAUST_TEMPERATURE_SENSOR_PRESENT $IS_CPU2_TEMPERATURE_SENSOR_PRESENT
 
     if [$CPU1_TEMPERATURE -le 45]; then
       #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
