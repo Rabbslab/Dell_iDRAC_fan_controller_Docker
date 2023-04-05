@@ -222,6 +222,7 @@ while true; do
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x44 >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (68%)"
     COMMENT="Test (68%)"
+    COMMENT="$CPU1_TEMPERATURE"
   fi
   # Enable or disable, depending on the user's choice, third-party PCIe card Dell default cooling response
   # No comment will be displayed on the change of this parameter since it is not related to the temperature of any device (CPU, GPU, etc...) but only to the settings made by the user when launching this Docker container
