@@ -191,7 +191,8 @@ while true; do
   else
     apply_user_fan_control_profile
         
-  if [[ $CPU1_TEMPERATURE -le 45 ]]; then
+ # if [[ $CPU1_TEMPERATURE -le 45 ]]; then
+  if [[ $CPU1_TEMPERATURE -gt 30 ]] && [[ $CPU1_TEMPERATURE -le 50 ]];
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x01 0x00 >/dev/null
     #ipmitool -I $IDRAC_LOGIN_STRING raw 0x30 0x30 0x02 0xff 0x0F >/dev/null
     #CURRENT_FAN_CONTROL_PROFILE="User static fan control profile (15%)"
